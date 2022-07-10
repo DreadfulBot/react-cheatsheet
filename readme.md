@@ -38,5 +38,5 @@ Steps for installation:
         "eject": "craco eject"
     }
    ```
-   
+
 5. Start project and check everything works: `yarn start`
