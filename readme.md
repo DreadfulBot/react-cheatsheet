@@ -3,6 +3,8 @@
 - [React CheatSheet](#react-cheatsheet)
   - [create-react-app with typescript support](#create-react-app-with-typescript-support)
   - [Typescript - adding aliases to project](#typescript---adding-aliases-to-project)
+    - [Using `@craco/craco` package](#using-cracocraco-package)
+    - [Using `react-app-rewired` and `customize-cra`](#using-react-app-rewired-and-customize-cra)
 
 ## create-react-app with typescript support  
 
@@ -16,7 +18,7 @@ It is very important to have consistent import statements in your react projects
 
 Unfortunately, latest versions of typescript support this trick worse and worse (I don't know why, in fact).
 
-One of ways of usage - with `@craco` package.
+### Using `@craco/craco` package
 
 Steps for installation:
 
@@ -47,3 +49,32 @@ Steps for installation:
    ```
 
 5. Start project and check everything works: `yarn start`
+
+### Using `react-app-rewired` and `customize-cra`
+
+Steps for installation:
+
+1. `yarn add react-app-rewired`
+2. `yarn add  customize-cra`
+3. In `config-overrides.js` add those lines:
+
+   ```javascript
+   const { addWebpackAlias } = require('customize-cra');
+   const path = require('path');
+
+   //... in module.export of configuration section:
+   addWebpackAlias({
+    '~': path.resolve(__dirname, './src'),
+    // ...
+   })
+   ```
+
+4. And font forget to add similar aliases to `tsconfig.json`:
+
+   ```javascript
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ],
+    },
+   ```
