@@ -1,7 +1,14 @@
 # React CheatSheet
 
 - [React CheatSheet](#react-cheatsheet)
+  - [create-react-app with typescript support](#create-react-app-with-typescript-support)
   - [Typescript - adding aliases to project](#typescript---adding-aliases-to-project)
+
+## create-react-app with typescript support  
+
+```shell
+npx create-react-app my-app --template typescript
+```
 
 ## Typescript - adding aliases to project
 
