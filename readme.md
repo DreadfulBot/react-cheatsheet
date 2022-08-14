@@ -5,6 +5,7 @@
   - [Typescript - adding aliases to project](#typescript---adding-aliases-to-project)
     - [Using `@craco/craco` package](#using-cracocraco-package)
     - [Using `react-app-rewired` and `customize-cra`](#using-react-app-rewired-and-customize-cra)
+  - [React-app-rewired CheatSheet](#react-app-rewired-cheatsheet)
 
 ## create-react-app with typescript support  
 
@@ -78,3 +79,7 @@ Steps for installation:
       ],
     },
    ```
+
+## React-app-rewired CheatSheet
+
+Available here in separate document - [link](./config/react-app-rewired/readme.md)
