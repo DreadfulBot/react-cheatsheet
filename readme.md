@@ -6,6 +6,7 @@
     - [Using `@craco/craco` package](#using-cracocraco-package)
     - [Using `react-app-rewired` and `customize-cra`](#using-react-app-rewired-and-customize-cra)
   - [React-app-rewired CheatSheet](#react-app-rewired-cheatsheet)
+  - [Configuring storybook](#configuring-storybook)
 
 ## create-react-app with typescript support  
 
@@ -83,3 +84,41 @@ Steps for installation:
 ## React-app-rewired CheatSheet
 
 Available here in separate document - [link](./config/react-app-rewired/readme.md)
+
+## Configuring storybook
+
+- Install dependencies
+
+```js
+yarn install @storybook/react @types/storybook__react
+```
+
+- Add command to `package.json`
+
+```js
+"storybook": "NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 9009 -s public" 
+```
+
+- Create folder `.storybook` in root of your project
+- Create file `.storybook/config.tsx` with content:
+
+```js
+import React from 'react'
+import { configure, addDecorator } from "@storybook/react";
+import { TestProvider } from '../src/utils/tests';
+import { store } from '../src/redux/store';
+
+const req = require.context("../src", true, /\.stories\.tsx$/);
+
+function loadStories() {
+    req.keys().forEach(req);
+}
+
+// Test provider contains all necessary react contexts for proper application work, such as redux context, @mui/theme provider, and so on
+addDecorator(S =>
+     <TestProvider store={store}><S /></TestProvider>
+ );
+
+configure(loadStories, module);
+
+```
