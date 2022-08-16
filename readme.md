@@ -90,7 +90,7 @@ Available here in separate document - [link](./config/react-app-rewired/readme.m
 - Install dependencies
 
 ```js
-yarn install @storybook/react @types/storybook__react
+yarn install @storybook/react @types/storybook__react @storybook/preset-create-react-app @storybook/builder-webpack5 @storybook/manager-webpack5
 ```
 
 - Add command to `package.json`
@@ -100,7 +100,7 @@ yarn install @storybook/react @types/storybook__react
 ```
 
 - Create folder `.storybook` in root of your project
-- Create file `.storybook/config.tsx` with content:
+- Create file `.storybook/preview.tsx` with content:
 
 ```js
 import React from 'react'
@@ -120,5 +120,34 @@ addDecorator(S =>
  );
 
 configure(loadStories, module);
+
+```
+
+- Create file `.storybook/main.js` with content:
+
+```js
+const path = require('path');
+
+module.exports = {
+  addons: [
+    '@storybook/preset-create-react-app'
+  ],
+  core: {
+    builder: 'webpack5',
+  },
+  // feel free to modify webpack config here as well
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    });
+
+    // my custom alias for pretty-path module resolution. ~ sign points to root of src folder
+    config.resolve.alias['~'] = path.resolve(__dirname, '../src');
+
+    return config;
+  }
+}
 
 ```
