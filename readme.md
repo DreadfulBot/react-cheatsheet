@@ -7,6 +7,7 @@
     - [Using `react-app-rewired` and `customize-cra`](#using-react-app-rewired-and-customize-cra)
   - [React-app-rewired CheatSheet](#react-app-rewired-cheatsheet)
   - [Configuring storybook](#configuring-storybook)
+  - [Testing](#testing)
 
 ## create-react-app with typescript support  
 
@@ -149,5 +150,8 @@ module.exports = {
     return config;
   }
 }
-
 ```
+
+## Testing
+
+Separate document available in [testing/readme.md]( ./testing )
